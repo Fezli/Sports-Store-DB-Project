@@ -86,7 +86,6 @@ CREATE TABLE product (
   name varchar(255) NOT NULL,
   price decimal NOT NULL,
   supplier_id bigint NOT NULL
-  --count int NOT NULL
 );
 -- Комментарии к таблице "Товар" (product)
 COMMENT ON TABLE product IS 'Таблица-справочник товаров';
@@ -94,7 +93,6 @@ COMMENT ON COLUMN product.product_id IS 'PRIMARY KEY. ID товара';
 COMMENT ON COLUMN product.name IS 'Название товара';
 COMMENT ON COLUMN product.price IS 'Цена товара';
 COMMENT ON COLUMN product.supplier_id IS 'FOREIGN KEY. ID поставщика';
---COMMENT ON COLUMN product.count IS 'Общее количество товара на складе';
 
 
 CREATE TABLE supplier (
