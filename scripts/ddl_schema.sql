@@ -247,7 +247,8 @@ ALTER TABLE product
 ALTER TABLE warehouse_product
   ADD CONSTRAINT fk_warehouse_product_warehouse FOREIGN KEY (warehouse_id) REFERENCES warehouse(warehouse_id),
   ADD CONSTRAINT fk_warehouse_product_product FOREIGN KEY (product_id) REFERENCES product(product_id),
-  ADD CONSTRAINT chk_warehouse_quantity CHECK (quantity >= 0); -- Количество товара на складе, не может быть отрицательным
+  ADD CONSTRAINT chk_warehouse_quantity CHECK (quantity >= 0), -- Количество товара на складе, не может быть отрицательным
+  ADD CONSTRAINT uq_warehouse_product_warehouse_id_product_id UNIQUE (warehouse_id, product_id);
 
 ALTER TABLE product_category_prod
   ADD CONSTRAINT fk_prod_cat_prod_category FOREIGN KEY (product_category_id) REFERENCES product_category(product_category_id),
