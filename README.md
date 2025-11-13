@@ -8,7 +8,9 @@
 *   Создание концептуальной, логической и физической моделей данных.
 *   Написание DDL-скриптов для создания схемы базы данных.
 *   Написание DML-скриптов для наполнения БД тестовыми данными.
-*   Составление аналитических SQL-запросов.
+*   Разработка представлений (Views) для упрощения доступа к данным.
+*   Разработка хранимой процедуры (Stored Procedures) для автоматизаци возврата товара.
+*   Составление аналитических запросов для получения реальных бизнес-метрик и отчетов.
 
 
 ## Инструменты и технологии
@@ -22,12 +24,15 @@
 ## Структура репозитория
 
 *   `models/`
-    *   `├──` [`conceptual_model.png`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/conceptual_model.png) — Концептуальная модель
-    *   `├──` [`logical_model.png`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/logical_model.png) — Логическая модель
-    *   `└──` [`physical_model.png`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/physical_model.png) — Физическая модель
+    *   `├──` [`conceptual_model.png`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/conceptual_model.png) - Концептуальная модель
+    *   `├──` [`logical_model.png`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/logical_model.png) - Логическая модель
+    *   `└──` [`physical_model.png`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/physical_model.png) - Физическая модель
 *   `scripts/`
-    *   `├──` [`ddl-schema.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/ddl_schema.sql) — DDL-скрипт для создания схемы БД
-    *   `└──` [`dml-data.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/dml_data.sql) — DML-скрипт для наполнения БД
+    *   `├──` [`ddl-schema.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/ddl_schema.sql) - DDL-скрипт для создания схемы БД
+    *   `├──` [`dml-data.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/dml_data.sql) - DML-скрипт для наполнения БД
+    *   `├──` [`process.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/process.sql) - Хранимые процедуры (Stored Procedures)
+    *   `├──` [`views.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/views.sql) - Представления (Views)
+    *   `└──` [`query.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/query.sql) - Аналитические запросы
 
 ## Этапы проектирования базы данных
 
@@ -63,7 +68,19 @@
 
 ![ERD](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/models/physical_model.png)
 
+## Описание SQL-скриптов
 
+Репозиторий содержит полный набор скриптов для создания, наполнения и анализа базы данных.
+
+*   **[`ddl-schema.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/ddl_schema.sql):** Создает структуру таблиц, связи и ограничения целостности данных.
+*   **[`dml-data.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/dml_data.sql):** Наполняет базу данных логичными тестовыми данными для последующего анализа.
+*   **[`query.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/query.sql):** Содержит сложные аналитические запросы с CTE и оконными функциями для расчета бизнес-метрик.
+*   **[`views.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/views.sql):** Создает представления для упрощения доступа к данным:
+    *   **`v_detailed_sales_report`**: Полный отчет по каждому товару в каждом чеке.
+    *   **`v_customer_analytics`**: Агрегированные метрики (сумма трат, кол-во заказов, средний чек) по каждому клиенту.
+*   **[`process.sql`](https://github.com/Fezli/Sports-Store-DB-Project/blob/main/scripts/process.sql):** Создает хранимые процедуры для автоматизации бизнес-логики:
+    *   **`sp_process_product_return`**: Автоматизирует процесс возврата товара с обновлением остатков на складе.
+ 
 ## Как запустить проект
 
 1.  Клонируйте репозиторий:
@@ -72,5 +89,8 @@
     ```
 2.  Создайте новую базу данных в вашей СУБД PostgreSQL.
 3.  Последовательно выполните SQL-скрипты из папки `/scripts`:
-    *   `ddl_schema.sql` — для создания таблиц и связей.
-    *   `dml_data.sql` — для заполнения таблиц тестовыми данными.
+    *   `ddl_schema.sql` - для создания таблиц и связей.
+    *   `dml_data.sql` - для заполнения таблиц тестовыми данными.
+    *   `views.sql` - для создания представлений.
+    *   `process.sql` - для создания хранимых процедур.
+4.  Скрипт `query.sql` содержит аналитические запросы.
